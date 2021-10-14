@@ -2,7 +2,13 @@ name: Docker Image CI
 
 on:
   workflow_call:
-
+    secrets:
+      DOCKER_USERNAME:
+        required: true
+      DOCKER_PASSWORD:
+        required: true
+      GH_TOKEN:
+        required: true
 jobs:
 
   build:
