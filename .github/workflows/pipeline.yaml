@@ -2,6 +2,10 @@ name: Docker Image CI
 
 on:
   workflow_call:
+    inputs:
+      imagerepo:
+        required: true
+        type: string
     secrets:
       DOCKER_USERNAME:
         required: true
@@ -27,7 +31,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: ${{ secrets.DOCKER_USERNAME }}/frontend
+          repository: ${{ secrets.DOCKER_USERNAME }}/${{ inputs.imagerepo }}
           tags: ${{ env.DOCKER_TAG }}, latest
 
       - name: generate release file
